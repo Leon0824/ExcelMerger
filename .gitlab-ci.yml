@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - deploy
+
+default:
+  tags:
+    - windows
+  before_script:
+    - choco install python --yes --version 3.9.6
+    - $env:Path = "C:\Python39\;C:\Python39\Scripts\;" + $env:Path
+    - python -m pip install --upgrade pip
+
+build-job:
+  stage: build
+  script:
+    - echo "running scripts in the build job"
+
+test-job1:
+  stage: test
+  script:
+    - echo "running scripts in the test job 1"
+
+test-job2:
+  stage: test
+  script:
+    - echo "running scripts in the test job 2"
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "running scripts in the deploy job"

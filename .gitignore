@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.vscode/
+wxGlade-1.0.2/
+__pycache__/
+dist/
+*.build/
