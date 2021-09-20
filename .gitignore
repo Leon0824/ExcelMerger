@@ -1,10 +1,9 @@
 .DS_Store
 node_modules
-/build
+build
 /.svelte-kit
 /package
-.vscode/
-wxGlade-1.0.2/
-__pycache__/
-dist/
-*.build/
+.vscode
+dist
+*.spec
+__pycache__

@@ -1,0 +1,23 @@
+{
+  "name": "excelmerger",
+  "version": "0.1.20210920",
+  "scripts": {
+    "dev": "svelte-kit dev --host",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0-next.16",
+    "@sveltejs/kit": "^1.0.0-next.150",
+    "@tauri-apps/cli": "^1.0.0-beta.9",
+    "svelte": "^3.34.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@tauri-apps/api": "^1.0.0-beta.6",
+    "exceljs": "^4.3.0",
+    "iconv-lite": "^0.6.3",
+    "xlsx-js-style": "^1.0.0"
+  }
+}
