@@ -1,6 +1,7 @@
 <script>
   import { browser } from "$app/env";
   import { open, save } from "../../node_modules/@tauri-apps/api/dialog";
+  import { Command } from "../../node_modules/@tauri-apps/api/shell";
   import XLSX from "xlsx-js-style";
   import iconv from "iconv-lite";
 
@@ -17,63 +18,78 @@
       dropbox.classList.remove("normal");
     }
 
-    function handleFiles(files) {
-      const fileType = new Set([
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "application/vnd.ms-excel",
-      ]);
+    async function handleFiles(files) {
 
-      for (const file of files) {
-        if (!fileType.has(file.type)) {
-          setBackgroundNormal();
-          alert(`${file.name} 非 Excel 檔案`);
-          return false;
-        }
-      }
+      const command = Command.sidecar("merger", files);
+      const output = await command.execute();
+      console.log(output);
 
-      for (const file of files) {
-        const reader = new FileReader();
-        reader.readAsArrayBuffer(file);
-        reader.onload = (e) => {
-          const data = new Uint8Array(e.target.result);
-          const workbook = XLSX.read(data, { type: "array" });
+      // const fileType = new Set([
+      //   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      //   "application/vnd.ms-excel",
+      // ]);
 
-          /* DO SOMETHING WITH workbook HERE */
-          console.log(workbook);
-          const firstSheetName = workbook.SheetNames[0];
-          const firstSheet = workbook.Sheets[firstSheetName];
+      // for (const file of files) {
+      //   if (!fileType.has(file.type)) {
+      //     setBackgroundNormal();
+      //     alert(`${file.name} 非 Excel 檔案`);
+      //     return false;
+      //   }
+      // }
 
-          Object.entries(firstSheet).forEach(([key, value]) => {
-            if (value.v) value.v = iconv.decode(value.v, "big5");
-          });
+      // for (const file of files) {
+      //   const reader = new FileReader();
+      //   reader.readAsArrayBuffer(file);
+      //   reader.onload = (e) => {
+      //     const data = new Uint8Array(e.target.result);
+      //     const workbook = XLSX.read(data, { type: "array" });
 
-          /* output format determined by filename */
-          XLSX.writeFile(workbook, "out.xlsx");
-          /* at this point, out.xlsx will have been downloaded */
-        };
-      }
+      //     /* DO SOMETHING WITH workbook HERE */
+      //     console.log(workbook);
+      //     const firstSheetName = workbook.SheetNames[0];
+      //     const firstSheet = workbook.Sheets[firstSheetName];
+
+      //     Object.entries(firstSheet).forEach(([key, value]) => {
+      //       if (value.v) value.v = iconv.decode(value.v, "big5");
+      //     });
+
+      //     /* output format determined by filename */
+      //     XLSX.writeFile(workbook, "out.xlsx");
+      //     /* at this point, out.xlsx will have been downloaded */
+      //   };
+      // }
 
       setBackgroundNormal();
     }
 
     async function click(e) {
-      const arrFileHandle = await window.showOpenFilePicker({
+      const files = await open({
+        directory: false,
+        // filters: {
+        //   name: "*",
+        //   extensions: ["xlsx", "xls"],
+        // },
         multiple: true,
-        types: [
-          {
-            accept: {
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-                [".xlsx"],
-              "application/vnd.ms-excel": [".xls"],
-            },
-          },
-        ],
       });
+      console.log(files);
 
-      const files = [];
-      for (const fileHandle of arrFileHandle) {
-        files.push(await fileHandle.getFile());
-      }
+      // const arrFileHandle = await window.showOpenFilePicker({
+      //   multiple: true,
+      //   types: [
+      //     {
+      //       accept: {
+      //         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+      //           [".xlsx"],
+      //         "application/vnd.ms-excel": [".xls"],
+      //       },
+      //     },
+      //   ],
+      // });
+
+      // const files = [];
+      // for (const fileHandle of arrFileHandle) {
+      //   files.push(await fileHandle.getFile());
+      // }
 
       handleFiles(files);
     }

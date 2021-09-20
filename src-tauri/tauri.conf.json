@@ -1,7 +1,7 @@
 {
   "package": {
-    "productName": "Excel Merger",
-    "version": "0.1.20210920"
+    "productName": "ExcelMerger",
+    "version": "0.1.0"
   },
   "build": {
     "distDir": "../build",
@@ -22,7 +22,7 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": [],
+      "externalBin": ["../src-python/dist/merger"],
       "copyright": "",
       "category": "Productivity",
       "shortDescription": "Convert BIG5 .xls to UTF-8 xlsx.",
@@ -58,7 +58,7 @@
       {
         "fileDropEnabled": false,
         "center": true,
-        "title": "Excel Merger",
+        "title": "ExcelMerger",
         "width": 400,
         "height": 400,
         "resizable": false,
