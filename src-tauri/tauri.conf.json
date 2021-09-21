@@ -56,7 +56,7 @@
     },
     "windows": [
       {
-        "fileDropEnabled": false,
+        "fileDropEnabled": true,
         "center": true,
         "title": "ExcelMerger",
         "width": 400,

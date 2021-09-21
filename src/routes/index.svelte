@@ -2,6 +2,7 @@
   import { browser } from "$app/env";
   import { open, save } from "../../node_modules/@tauri-apps/api/dialog";
   import { Command } from "../../node_modules/@tauri-apps/api/shell";
+  import { listen } from "../../node_modules/@tauri-apps/api/event";
   import XLSX from "xlsx-js-style";
   import iconv from "iconv-lite";
 
@@ -19,15 +20,10 @@
     }
 
     async function handleFiles(files) {
-
-      const command = Command.sidecar("merger", files);
-      const output = await command.execute();
-      console.log(output);
-
-      // const fileType = new Set([
-      //   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      //   "application/vnd.ms-excel",
-      // ]);
+      const fileType = new Set([
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-excel",
+      ]);
 
       // for (const file of files) {
       //   if (!fileType.has(file.type)) {
@@ -36,6 +32,10 @@
       //     return false;
       //   }
       // }
+
+      const command = Command.sidecar("merger", files);
+      const output = await command.execute();
+      console.log(output);
 
       // for (const file of files) {
       //   const reader = new FileReader();
@@ -71,45 +71,14 @@
         // },
         multiple: true,
       });
-      console.log(files);
 
-      // const arrFileHandle = await window.showOpenFilePicker({
-      //   multiple: true,
-      //   types: [
-      //     {
-      //       accept: {
-      //         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-      //           [".xlsx"],
-      //         "application/vnd.ms-excel": [".xls"],
-      //       },
-      //     },
-      //   ],
-      // });
+      if (typeof files === "string") {
+        files = [files];
+      }
 
-      // const files = [];
-      // for (const fileHandle of arrFileHandle) {
-      //   files.push(await fileHandle.getFile());
-      // }
-
-      handleFiles(files);
-    }
-
-    function dragenter(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      setBackgroundDragenter();
-    }
-
-    function dragover(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      setBackgroundDragenter();
-    }
-
-    function dragleave(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      setBackgroundNormal();
+      if (files !== null) {
+        handleFiles(files);
+      }
     }
 
     function drop(e) {
@@ -119,11 +88,22 @@
       handleFiles(files);
     }
 
-    dropbox.addEventListener("dragenter", dragenter, false);
-    dropbox.addEventListener("dragleave", dragleave, false);
-    dropbox.addEventListener("dragover", dragover, false);
     dropbox.addEventListener("drop", drop, false);
     dropbox.addEventListener("click", click, false);
+
+    listen("tauri://file-drop-hover", (e) => {
+      setBackgroundDragenter();
+    });
+
+    listen("tauri://file-drop-cancelled", (e) => {
+      setBackgroundNormal();
+    });
+
+    listen("tauri://file-drop", (e) => {
+      const files = e.payload
+      handleFiles(files);
+      setBackgroundNormal();
+    });
   }
 </script>
 
