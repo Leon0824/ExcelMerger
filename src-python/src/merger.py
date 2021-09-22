@@ -73,8 +73,8 @@ def main() -> None:
             
             merge_sheets(main_wb)
         
-        main_wb_sheet.name = main_wb_sheet.name + '.all'
-        main_wb.save(main_file_path.with_suffix('.all.xlsx'))
+        main_wb_sheet.name = main_wb_sheet.name + '.merged'
+        main_wb.save(main_file_path.with_suffix('.merged.xlsx'))
         # breakpoint()
 
 if __name__ == '__main__':

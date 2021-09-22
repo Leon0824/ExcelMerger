@@ -3,8 +3,7 @@
   import { open, save } from "../../node_modules/@tauri-apps/api/dialog";
   import { Command } from "../../node_modules/@tauri-apps/api/shell";
   import { listen } from "../../node_modules/@tauri-apps/api/event";
-  import XLSX from "xlsx-js-style";
-  import iconv from "iconv-lite";
+  // import { extname } from "../../node_modules/@tauri-apps/api/path";
 
   if (browser) {
     const dropbox = document.getElementById("dropbox");
@@ -21,50 +20,25 @@
 
     async function handleFiles(files) {
       const fileType = new Set([
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        "application/vnd.ms-excel",
+        "xlsx",
+        "xls",
       ]);
 
       for (const file of files) {
-        fileExt = file.split('.').slice(-1)[0]
-        // if (!fileType.has(file.type)) {
-        //   setBackgroundNormal();
-        //   alert(`${file.name} 非 Excel 檔案`);
-        //   return false;
-        // }
+        const fileExt = file.split('.').slice(-1)[0].toLowerCase();
+        if (!fileType.has(fileExt)) {
+          alert(`${file} 非 Excel 檔案`);
+          return false;
+        }
       }
 
       const command = Command.sidecar("merger", files);
       const output = await command.execute();
       console.log(output);
-
-      // for (const file of files) {
-      //   const reader = new FileReader();
-      //   reader.readAsArrayBuffer(file);
-      //   reader.onload = (e) => {
-      //     const data = new Uint8Array(e.target.result);
-      //     const workbook = XLSX.read(data, { type: "array" });
-
-      //     /* DO SOMETHING WITH workbook HERE */
-      //     console.log(workbook);
-      //     const firstSheetName = workbook.SheetNames[0];
-      //     const firstSheet = workbook.Sheets[firstSheetName];
-
-      //     Object.entries(firstSheet).forEach(([key, value]) => {
-      //       if (value.v) value.v = iconv.decode(value.v, "big5");
-      //     });
-
-      //     /* output format determined by filename */
-      //     XLSX.writeFile(workbook, "out.xlsx");
-      //     /* at this point, out.xlsx will have been downloaded */
-      //   };
-      // }
-
-      setBackgroundNormal();
     }
 
     async function click(e) {
-      const files = await open({
+      let files = await open({
         directory: false,
         // filters: {
         //   name: "*",
@@ -109,7 +83,6 @@
 </script>
 
 <svelte:head>
-  <!-- <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script> -->
 </svelte:head>
 
 <div
