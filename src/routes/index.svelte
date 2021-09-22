@@ -25,13 +25,14 @@
         "application/vnd.ms-excel",
       ]);
 
-      // for (const file of files) {
-      //   if (!fileType.has(file.type)) {
-      //     setBackgroundNormal();
-      //     alert(`${file.name} 非 Excel 檔案`);
-      //     return false;
-      //   }
-      // }
+      for (const file of files) {
+        fileExt = file.split('.').slice(-1)[0]
+        // if (!fileType.has(file.type)) {
+        //   setBackgroundNormal();
+        //   alert(`${file.name} 非 Excel 檔案`);
+        //   return false;
+        // }
+      }
 
       const command = Command.sidecar("merger", files);
       const output = await command.execute();
