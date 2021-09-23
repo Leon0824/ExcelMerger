@@ -75,7 +75,7 @@ def main() -> None:
         main_wb_sheet.name = main_wb_sheet.name + '.merged'
 
         temp_path = Path(tempfile.gettempdir())
-        new_file_path = temp_path.with_stem(main_file_path.stem).with_suffix('.merged.xlsx')
+        new_file_path = temp_path.joinpath(main_file_path.stem + '.merged.xlsx')
         main_wb.save(new_file_path)
         print(new_file_path)
         # breakpoint()

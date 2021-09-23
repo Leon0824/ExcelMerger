@@ -3,9 +3,14 @@
   import { open, save } from "../../node_modules/@tauri-apps/api/dialog";
   import { Command } from "../../node_modules/@tauri-apps/api/shell";
   import { listen } from "../../node_modules/@tauri-apps/api/event";
-  // import { extname } from "../../node_modules/@tauri-apps/api/path";
+  import { copyFile } from "../../node_modules/@tauri-apps/api/fs";
+  // import { dirname } from "../../node_modules/@tauri-apps/api/path";
 
   if (browser) {
+    document.oncontextmenu = () => {
+      // return false;
+    };
+
     const dropbox = document.getElementById("dropbox");
 
     function setBackgroundNormal() {
@@ -34,7 +39,17 @@
 
       const command = Command.sidecar("merger", files);
       const output = await command.execute();
-      console.log(output);
+
+      if (output.code === 0) {
+        const mergedFileTempPath = output.stdout;
+        const mergedFileName = mergedFileTempPath.split('\\').pop();
+        const defaultSavePath = files[0].split("\\").slice(0, -1).join('\\') + '\\' + mergedFileName;
+        const savePath = await save({
+          defaultPath: defaultSavePath,
+        });
+
+        await copyFile(mergedFileTempPath, savePath);
+      }
     }
 
     async function click(e) {
