@@ -2,6 +2,7 @@ from sys import argv
 from pathlib import Path
 from glob import glob
 from collections import OrderedDict
+import tempfile
 
 import xlwings as xw
 
@@ -48,8 +49,6 @@ def main() -> None:
     # Deduplicate
     absolute_paths = list(OrderedDict.fromkeys(absolute_paths))
 
-    # print(absolute_paths)
-    
     main_file_path: Path = absolute_paths[0]
 
     # Check files suffix
@@ -74,7 +73,11 @@ def main() -> None:
             merge_sheets(main_wb)
         
         main_wb_sheet.name = main_wb_sheet.name + '.merged'
-        main_wb.save(main_file_path.with_suffix('.merged.xlsx'))
+
+        temp_path = Path(tempfile.gettempdir())
+        new_file_path = temp_path.with_stem(main_file_path.stem).with_suffix('.merged.xlsx')
+        main_wb.save(new_file_path)
+        print(new_file_path)
         # breakpoint()
 
 if __name__ == '__main__':
