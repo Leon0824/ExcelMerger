@@ -5,9 +5,6 @@ ExcelMerger merges Excel files:
 - Merges multiple sheets into one sheet.
 - Merges multiple workbooks into one workbook
 
-## Installation
-
-TBD
 ## Usage
 
 ```powershell
@@ -20,4 +17,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
+Common Clause + Zero-Clause BSD
