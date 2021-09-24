@@ -8,7 +8,7 @@
 
   if (browser) {
     document.oncontextmenu = () => {
-      // return false;
+      return false;
     };
 
     const dropbox = document.getElementById("dropbox");
@@ -16,10 +16,17 @@
     function setBackgroundNormal() {
       dropbox.classList.add("normal");
       dropbox.classList.remove("dragenter");
+      dropbox.classList.remove('processing');
     }
 
     function setBackgroundDragenter() {
       dropbox.classList.add("dragenter");
+      dropbox.classList.remove("normal");
+    }
+
+    function setBackgroundProcessing() {
+      dropbox.classList.add("processing");
+      dropbox.classList.remove("dragenter");
       dropbox.classList.remove("normal");
     }
 
@@ -48,8 +55,12 @@
           defaultPath: defaultSavePath,
         });
 
-        await copyFile(mergedFileTempPath, savePath);
+        if (savePath) {
+          await copyFile(mergedFileTempPath, savePath);
+        }
       }
+
+      setBackgroundNormal();
     }
 
     async function click(e) {
@@ -67,6 +78,7 @@
       }
 
       if (files !== null) {
+        setBackgroundProcessing();
         handleFiles(files);
       }
     }
@@ -90,9 +102,9 @@
     });
 
     listen("tauri://file-drop", (e) => {
-      const files = e.payload
+      setBackgroundProcessing();
+      const files = e.payload;
       handleFiles(files);
-      setBackgroundNormal();
     });
   }
 </script>
@@ -130,5 +142,9 @@
 
   :global(.dragenter) {
     background-image: url("/dragenter.svg");
+  }
+
+  :global(.processing) {
+    background-image: url("/processing.svg");
   }
 </style>

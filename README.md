@@ -19,3 +19,8 @@ Please make sure to update tests as appropriate.
 ## License
 
 Common Clause + Zero-Clause BSD
+
+## Credits
+
+- Icons made by [Darius Dan](https://www.flaticon.com/authors/darius-dan) from [www.flaticon.com](https://www.flaticon.com/)
+- Icons made by [Freepik](https://www.freepik.com") from [www.flaticon.com](https://www.flaticon.com/)
