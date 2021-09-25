@@ -1,6 +1,6 @@
 {
   "name": "excelmerger",
-  "version": "0.1.20210920",
+  "version": "0.2.0",
   "scripts": {
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
