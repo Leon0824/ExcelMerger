@@ -1,5 +1,7 @@
 # ExcelMerger
 
+![ExcelMerger](app-icon.png)
+
 ExcelMerger merges Excel files:
 
 - Merges multiple sheets to one sheet.
