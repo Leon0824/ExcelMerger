@@ -1,6 +1,6 @@
 # ExcelMerger
 
-![ExcelMerger](app-icon.png)
+![ExcelMerger](/static/cover.png)
 
 ExcelMerger merges Excel files:
 
