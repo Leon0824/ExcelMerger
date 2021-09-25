@@ -4,7 +4,7 @@
 
 ExcelMerger merges Excel files:
 
-- Merges multiple sheets to one sheet.
+- Merges multiple sheets to one sheet
 - Merges multiple workbooks to one workbook
 
 ## License
