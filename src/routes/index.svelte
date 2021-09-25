@@ -40,6 +40,7 @@
         const fileExt = file.split('.').slice(-1)[0].toLowerCase();
         if (!fileType.has(fileExt)) {
           alert(`${file} 非 Excel 檔案`);
+          setBackgroundNormal();
           return false;
         }
       }
