@@ -2,6 +2,8 @@
 
 ![ExcelMerger](/static/cover.png)
 
+[正體華文說明](README.zh.md)
+
 ExcelMerger merges Excel files:
 
 - Merges multiple sheets to one sheet
