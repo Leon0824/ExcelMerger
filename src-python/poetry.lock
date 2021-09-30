@@ -27,7 +27,7 @@ altgraph = ">=0.15"
 
 [[package]]
 name = "nuitka"
-version = "0.6.17"
+version = "0.6.17.1"
 description = "Python compiler with full language support and CPython compatibility"
 category = "main"
 optional = false
@@ -157,7 +157,7 @@ macholib = [
     {file = "macholib-1.15.2.tar.gz", hash = "sha256:1542c41da3600509f91c165cb897e7e54c0e74008bd8da5da7ebbee519d593d2"},
 ]
 nuitka = [
-    {file = "Nuitka-0.6.17.tar.gz", hash = "sha256:c9534f795434fde32bc06b846fb7c593e05dc80df0f113abfa40f270b0452868"},
+    {file = "Nuitka-0.6.17.1.tar.gz", hash = "sha256:1a8cfb2bf6db3ccef96f87e5f89d3596a90fb540c7d6da047bc40fc1205c3437"},
 ]
 numpy = [
     {file = "numpy-1.21.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:38e8648f9449a549a7dfe8d8755a5979b45b3538520d1e735637ef28e8c2dc50"},

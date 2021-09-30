@@ -2,12 +2,14 @@
 
 ![ExcelMerger](/static/cover.png)
 
-[正體華文說明](README.zh.md)
+[台灣正體華文說明](README.zh.md)
 
 ExcelMerger merges Excel files:
 
 - Merges multiple sheets to one sheet
 - Merges multiple workbooks to one workbook
+
+[The story behind the app in Taiwanese](https://editor.leonh.space/2021/excelmerger/)
 
 ## Usage
 
