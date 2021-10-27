@@ -20,7 +20,7 @@ ExcelMerger merges Excel files:
 ## Feature
 
 - Intuitive and simplified UI / UX
-- lightweight and fast
+- Lightweight and fast
 - Keeps cell styling and format
 
 ## License
