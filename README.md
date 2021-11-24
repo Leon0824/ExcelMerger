@@ -1,6 +1,7 @@
 # ExcelMerger
 
 ![ExcelMerger](/static/cover.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLeon0824%2FExcelMerger.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FLeon0824%2FExcelMerger?ref=badge_shield)
 
 [台灣正體華文說明](README.zh.md)
 
@@ -26,6 +27,9 @@ ExcelMerger merges Excel files:
 ## License
 
 Common Clause + Zero-Clause BSD
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLeon0824%2FExcelMerger.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FLeon0824%2FExcelMerger?ref=badge_large)
 
 ## Credits
 
