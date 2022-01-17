@@ -7,7 +7,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 pywin32 = "^303"
-xlwings = "^0.24.9"
+xlwings = "^0.25.3"
 pyinstaller = "^4.8"
 Nuitka = "^0.6.16"
 
@@ -32,7 +32,7 @@ authors = [
 requires-python = ">=3.9,<3.11"
 dependencies = [
     "pywin32<304,>=302",
-    "xlwings<1.0.0,>=0.24.9",
+    "xlwings<1.0.0,>=0.25.3",
     "pyinstaller<5.0.0,>=4.5.1",
     "Nuitka<1.0.0,>=0.6.16"]
 name = "excel-combinator"

@@ -27,7 +27,7 @@ altgraph = ">=0.15"
 
 [[package]]
 name = "nuitka"
-version = "0.6.19.1"
+version = "0.6.19.3"
 description = "Python compiler with full language support and CPython compatibility"
 category = "main"
 optional = false
@@ -89,7 +89,7 @@ python-versions = "*"
 
 [[package]]
 name = "xlwings"
-version = "0.24.9"
+version = "0.25.3"
 description = "Make Excel fly: Interact with Excel from Python and vice versa."
 category = "main"
 optional = false
@@ -105,7 +105,7 @@ pro = ["cryptography", "jinja2", "pdfrw"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "2adb30a9c741b51e448a9cfcd36ed4dfe945ac853116e7a3bcb4ee1649425f62"
+content-hash = "84028e0e4caab0e5068ca9c6871cc7fd4da013a30c1687259a92793f52764156"
 
 [metadata.files]
 altgraph = [
@@ -120,7 +120,7 @@ macholib = [
     {file = "macholib-1.15.2.tar.gz", hash = "sha256:1542c41da3600509f91c165cb897e7e54c0e74008bd8da5da7ebbee519d593d2"},
 ]
 nuitka = [
-    {file = "Nuitka-0.6.19.1.tar.gz", hash = "sha256:af90a963dbba3f71eb7b99056cfdd1616314ce700ae646395fc7e01296142379"},
+    {file = "Nuitka-0.6.19.3.tar.gz", hash = "sha256:9c743ca8894712f25678f2e060285e1607969c3733800ac44e9177a29ced32c6"},
 ]
 pefile = [
     {file = "pefile-2021.9.3.tar.gz", hash = "sha256:344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a"},
@@ -161,5 +161,5 @@ pywin32-ctypes = [
     {file = "pywin32_ctypes-0.2.0-py2.py3-none-any.whl", hash = "sha256:9dc2d991b3479cc2df15930958b674a48a227d5361d413827a4cfd0b5876fc98"},
 ]
 xlwings = [
-    {file = "xlwings-0.24.9.tar.gz", hash = "sha256:19ed8c24b6a66c44c0a80eae33b06cbbfdb00187ac12c14460865432b102caa8"},
+    {file = "xlwings-0.25.3.tar.gz", hash = "sha256:f1fa4a6561de320a844e054678ff2a708af33eae5c2f55bd2af7bec3ef353d6a"},
 ]
