@@ -10,7 +10,7 @@
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0-next.29",
     "@sveltejs/kit": "^1.0.0-next.324",
-    "@tauri-apps/cli": "^1.0.0-beta.10",
+    "@tauri-apps/cli": "^1.0.0-rc.9",
     "svelte": "^3.47.0"
   },
   "type": "module",
