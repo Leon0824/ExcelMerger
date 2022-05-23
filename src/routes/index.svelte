@@ -1,10 +1,10 @@
 <script>
   import { browser } from "$app/env";
-  import { open, save } from "../../node_modules/@tauri-apps/api/dialog";
-  import { Command } from "../../node_modules/@tauri-apps/api/shell";
-  import { listen } from "../../node_modules/@tauri-apps/api/event";
-  import { copyFile } from "../../node_modules/@tauri-apps/api/fs";
-  // import { dirname } from "../../node_modules/@tauri-apps/api/path";
+  import { onMount } from "svelte";
+  import { open, save } from "@tauri-apps/api/dialog?client";
+  import { Command } from "@tauri-apps/api/shell?client";
+  import { listen } from "@tauri-apps/api/event?client";
+  import { copyFile } from "@tauri-apps/api/fs?client";
 
   function setBackgroundNormal() {
     dropbox.classList.add("normal");
@@ -35,14 +35,16 @@
       }
     }
 
-    const command = Command.sidecar("merger", files);
+    const command = Command.sidecar("../src-python/dist/merger", files);
     const output = await command.execute();
 
     if (output.code === 0) {
-      const mergedFileTempPath = output.stdout;
+      let mergedFileTempPath = output.stdout;
+      mergedFileTempPath = mergedFileTempPath.trimEnd();
       const mergedFileName = mergedFileTempPath.split("\\").pop();
-      const defaultSavePath =
+      let defaultSavePath =
         files[0].split("\\").slice(0, -1).join("\\") + "\\" + mergedFileName;
+      defaultSavePath = defaultSavePath.trimEnd();
       const savePath = await save({
         defaultPath: defaultSavePath,
       });
@@ -50,6 +52,9 @@
       if (savePath) {
         await copyFile(mergedFileTempPath, savePath);
       }
+    } else {
+      console.error(output.stderr);
+      alert(output.stderr);
     }
 
     setBackgroundNormal();
@@ -82,18 +87,21 @@
     }
   }
 
-  listen("tauri://file-drop-hover", (e) => {
-    setBackgroundDragenter();
-  });
+  onMount(() => {
+    listen("tauri://file-drop-hover", (e) => {
+      console.log(e);
+      setBackgroundDragenter();
+    });
 
-  listen("tauri://file-drop-cancelled", (e) => {
-    setBackgroundNormal();
-  });
+    listen("tauri://file-drop-cancelled", (e) => {
+      setBackgroundNormal();
+    });
 
-  listen("tauri://file-drop", (e) => {
-    setBackgroundProcessing();
-    const files = e.payload;
-    handleFiles(files);
+    listen("tauri://file-drop", (e) => {
+      setBackgroundProcessing();
+      const files = e.payload;
+      handleFiles(files);
+    });
   });
 
   if (browser) {

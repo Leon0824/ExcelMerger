@@ -3,9 +3,22 @@
 	"compilerOptions": {
 		"skipLibCheck": true,
 		"paths": {
-			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
-		}
+			"$lib": [
+				"src/lib"
+			],
+			"$lib/*": [
+				"src/lib/*"
+			],
+		},
+		"plugins": [
+			{
+				"name": "vite-plugin-iso-import",
+			}
+		]
 	},
-	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.svelte"]
+	"include": [
+		"src/**/*.d.ts",
+		"src/**/*.js",
+		"src/**/*.svelte",
+	]
 }

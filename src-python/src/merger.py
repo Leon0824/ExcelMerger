@@ -1,4 +1,4 @@
-from sys import argv
+from sys import argv, exit
 from pathlib import Path
 from glob import glob
 from collections import OrderedDict
@@ -57,7 +57,11 @@ def main() -> None:
         if not path.suffix.lower() in allowed_suffix: raise FileNotFoundError
 
     with xw.App(add_book=False, visible=False) as app:
-        main_wb: xw.Book = app.books.open(main_file_path)
+        try:
+            main_wb: xw.Book = app.books.open(main_file_path)
+        except Exception as e:
+            print(e)
+            exit(1)
         main_wb_sheet: xw.Sheet = main_wb.sheets[0]
 
         if len(main_wb.sheets) > 1: merge_sheets(main_wb)
