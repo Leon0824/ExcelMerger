@@ -9,7 +9,7 @@ python = ">=3.9,<3.11"
 pywin32 = "^303"
 xlwings = "^0.27.0"
 pyinstaller = "^5.0.0"
-Nuitka = "^0.7.7"
+Nuitka = "^0.9"
 
 [tool.poetry.dev-dependencies]
 
