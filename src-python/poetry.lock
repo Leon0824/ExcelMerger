@@ -52,7 +52,7 @@ altgraph = ">=0.15"
 
 [[package]]
 name = "nuitka"
-version = "0.7.7"
+version = "0.9"
 description = "Python compiler with full language support and CPython compatibility"
 category = "main"
 optional = false
@@ -144,7 +144,7 @@ reports = ["cryptography", "jinja2", "pdfrw"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "949eecd6229483eaeb152a474502b2a67321a476c0857d3394bcbd683ca17b31"
+content-hash = "dea5212a92cff97d21fd72828b832940aab13c690e6533c9e9cc5ae7e4c5d4f7"
 
 [metadata.files]
 altgraph = [
@@ -231,7 +231,7 @@ macholib = [
     {file = "macholib-1.16.tar.gz", hash = "sha256:001bf281279b986a66d7821790d734e61150d52f40c080899df8fefae056e9f7"},
 ]
 nuitka = [
-    {file = "Nuitka-0.7.7.tar.gz", hash = "sha256:c2bac25edae92d3ab00f6d16f9e32e5f25f55508e1e380b0ab0120e46e4b1767"},
+    {file = "Nuitka-0.9.tar.gz", hash = "sha256:085285ebcd8866ec3a462d3bd604b54cf394fea095fc1fff7d23950c1359db0a"},
 ]
 pefile = [
     {file = "pefile-2022.5.30.tar.gz", hash = "sha256:a5488a3dd1fd021ce33f969780b88fe0f7eebb76eb20996d7318f307612a045b"},
