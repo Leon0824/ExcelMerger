@@ -1,42 +1,43 @@
 [tool.poetry]
+authors = ["Your Name <you@example.com>"]
+description = ""
 name = "excel-combinator"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
+Nuitka = "^0.9"
+pyinstaller = "^5.0.0"
 python = ">=3.9,<3.11"
 pywin32 = "^303"
 xlwings = "^0.27.0"
-pyinstaller = "^5.0.0"
-Nuitka = "^0.9"
 
 [tool.poetry.dev-dependencies]
 
-
 [tool.pdm]
 includes = []
+
 [tool.pdm.dev-dependencies]
 dev = []
-[build-system]
-requires = ["pdm-pep517"]
-build-backend = "pdm.pep517.api"
 
+[build-system]
+build-backend = "pdm.pep517.api"
+requires = ["pdm-pep517"]
 
 [project]
 # PEP 621 project metadata
 # See https://www.python.org/dev/peps/pep-0621/
 authors = [
-    {name = "Your Name", email = "you@example.com"},
+  {name = "Your Name", email = "you@example.com"},
 ]
-requires-python = ">=3.9,<3.11"
 dependencies = [
-    "pywin32<304,>=302",
-    "xlwings<1.0.0,>=0.25.3",
-    "pyinstaller<5.0.0,>=4.5.1",
-    "Nuitka<1.0.0,>=0.6.16"]
-name = "excel-combinator"
-version = "0.1.0"
+  "pywin32<304,>=302",
+  "xlwings<1.0.0,>=0.25.3",
+  "pyinstaller<5.0.0,>=4.5.1",
+  "Nuitka<1.0.0,>=0.6.16",
+]
 description = ""
+name = "excel-combinator"
+requires-python = ">=3.9,<3.11"
+version = "0.1.0"
 
 [project.urls]
