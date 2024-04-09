@@ -2,11 +2,11 @@
 package-mode = false
 
 [tool.poetry.dependencies]
-Nuitka = "^0.9"
-pyinstaller = "^5.13.1"
+Nuitka = "^2"
+pyinstaller = "^6"
 python = ">=3.10,<3.11"
-pywin32 = "^303"
-xlwings = "^0.27.0"
+pywin32 = "^306"
+xlwings = "^0.31"
 
 [tool.poetry.dev-dependencies]
 
