@@ -1,13 +1,10 @@
 [tool.poetry]
-authors = ["Your Name <you@example.com>"]
-description = ""
-name = "excel-combinator"
-version = "0.1.0"
+package-mode = false
 
 [tool.poetry.dependencies]
 Nuitka = "^0.9"
 pyinstaller = "^5.13.1"
-python = ">=3.9,<3.11"
+python = ">=3.10,<3.11"
 pywin32 = "^303"
 xlwings = "^0.27.0"
 
@@ -37,7 +34,7 @@ dependencies = [
 ]
 description = ""
 name = "excel-combinator"
-requires-python = ">=3.9,<3.11"
+requires-python = ">=3.10,<3.11"
 version = "0.1.0"
 
 [project.urls]
