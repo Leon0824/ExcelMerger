@@ -25,22 +25,21 @@ def main() -> None:
     extracted_argvs: list[str] = []
 
     # Check files quantity
-    if len(argvs) < 1: raise FileNotFoundError
+    if not argvs: raise FileNotFoundError
 
     # Extract wildcard to path strings
     for path in argvs:
         p: Path = Path(path).absolute()
         if p.stem == '*':
             glob_paths: list[str] = glob(str(p))
-            for extracted_path in glob_paths:
-                extracted_argvs.append(extracted_path)
+            extracted_argvs.extend(iter(glob_paths))
         else:
             extracted_argvs.append(path)
-            
+
 
     # Check files existence
     for path in extracted_argvs:
-        if not (Path(path).is_file() and Path(path).exists()): raise FileNotFoundError
+        if not Path(path).is_file() or not Path(path).exists(): raise FileNotFoundError
 
     # Convert to absolute path
     absolute_paths: list[Path] = [Path(path).resolve() for path in extracted_argvs]
@@ -54,7 +53,7 @@ def main() -> None:
     # Check files suffix
     allowed_suffix: tuple[str] = ('.xlsx', '.xls')
     for path in absolute_paths:
-        if not path.suffix.lower() in allowed_suffix: raise FileNotFoundError
+        if path.suffix.lower() not in allowed_suffix: raise FileNotFoundError
 
     with xw.App(add_book=False, visible=False) as app:
         try:
@@ -73,13 +72,13 @@ def main() -> None:
 
                 second_wb_sheet: xw.Sheet = second_wb.sheets[0]
                 second_wb_sheet.copy(after=main_wb_sheet)
-            
+
             merge_sheets(main_wb)
-        
-        main_wb_sheet.name = main_wb_sheet.name + '.merged'
+
+        main_wb_sheet.name = f'{main_wb_sheet.name}.merged'
 
         temp_path = Path(tempfile.gettempdir())
-        new_file_path = temp_path.joinpath(main_file_path.stem + '.merged.xlsx')
+        new_file_path = temp_path.joinpath(f'{main_file_path.stem}.merged.xlsx')
         main_wb.save(new_file_path)
         print(new_file_path)
         # breakpoint()
