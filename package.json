@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^1.0.0-next.29",
-    "@sveltejs/kit": "^2.8.3",
+    "@sveltejs/kit": "^2.20.6",
     "@tauri-apps/cli": "^1.5.14",
     "svelte": "^5.2.8",
     "vite-plugin-iso-import": "^1.1.0"
